@@ -1,17 +1,16 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+//test@, match
 
-// test@, match
-// 
 const userSchema = new Schema(
   {
     fullName: {
       type: String,
-      required: [true, "Full Name is Required"],
+      required: [true, "Full Name is required"],
     },
     email: {
       type: String,
-      required: [true, "Email is Required"],
+      required: [true, "Email is required"],
       unique: true,
       lowercase: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -23,7 +22,8 @@ const userSchema = new Schema(
     },
     profilePicture: {
       type: String,
-      default: "https://svgsilh.com/svg/659651.svg",
+      default:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhtMRbtowke9ZnnGtyYJmIuJaB2Q1y5I-3IA&s",
     },
     role: {
       type: String,
@@ -32,10 +32,9 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      minlength: [6, "minimum password length is 6"],
-      required: [true, "password is required"],
+      minlength: [6, "Minimum password length is 6"],
+      required: [true, "Password is required"],
     },
-
     isVerified: {
       type: Boolean,
       default: false,
@@ -43,10 +42,11 @@ const userSchema = new Schema(
     verificationToken: String,
     verificationTokenExpires: Date,
     resetPasswordToken: String,
-    resetPasswordTokenExpires: Date,
+    resetPasswordExpires: Date,
   },
   { timestamps: true }
 );
 
-const USER = mongoose.model("user", userSchema)
+const USER = mongoose.model("user", userSchema);
+
 module.exports = USER;
