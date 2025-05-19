@@ -117,8 +117,11 @@ const handelLogin = async (req, res) => {
       return res.status(401).json({ message: "Invalide email or Password" });
     }
     // generating a token (validity, period)
-    const token = jwt.sign({email: user.email, role: user.role},
-      process.env.JWT_SECRET, {expireIn: "3 days"})
+    const token = jwt.sign(
+      { email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "3 days" }
+    );
 
     return res.status(200).json({
       success: true,
