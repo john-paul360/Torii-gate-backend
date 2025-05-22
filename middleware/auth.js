@@ -1,4 +1,4 @@
-const JWT = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 // 1 to check if user is logged in ( is logged In checkAuth)
 const isLoggedIn = async (req, res, next) => {
@@ -19,12 +19,13 @@ const isLoggedIn = async (req, res, next) => {
     }
     req.user = {
       email: payload.email,
-      role: payload.rol,
+      role: payload.role,
       userId: payload.userId,
     };
+    next();
   } catch (error) {
     console.error(error);
-    return res.startsWith(401).json({ message: "Authentication failed" });
+    return res.status(401).json({ message: "Authentication failed" });
   }
 };
 
@@ -36,8 +37,8 @@ const requirePermissions = (...roles) => {
         .status(403)
         .json({ message: "Unauthorized to access this route" });
     }
+    next();
   };
-  next();
 };
 
 module.exports = { isLoggedIn, requirePermissions };
