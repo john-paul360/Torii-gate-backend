@@ -274,7 +274,7 @@ const handleUpdateUser = async (req, res) => {
       return res.status(400).json({ message: "user not found" });
     }
 
-    //upload image with clouydinary
+    //upload image with cloudinary
     if (req.files && req.files.profilePicture) {
       const profilePicture = req.files.profilePicture;
       const result = await cloudinary.uploader.upload(
