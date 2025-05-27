@@ -7,6 +7,7 @@ const fileUpload = require("express-fileupload");
 const cloudinary = require("cloudinary").v2;
 const PORT = process.env.PORT || 3000;
 const userRouter = require("./routes/userRouter");
+const propertyRouter = require("./routes/propertyRouter");
 
 //middleware
 app.use(express.json());
@@ -31,10 +32,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", userRouter);
+app.use("/api/property", propertyRouter);
 
 //error route
 app.use((req, res) => {
-  res.status(404).json({ success: false, message: "Route not found" });
+  res.status(404).json({ success: false, message: "ROUTE NOT FOUND" });
 });
 
 const startServer = async () => {

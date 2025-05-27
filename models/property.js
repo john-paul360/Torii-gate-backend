@@ -20,7 +20,7 @@ const propertySchema = new Schema(
       required: true,
       min: 0,
     },
-    livinRoom: {
+    livingRoom: {
       type: Number,
       required: true,
       min: 0,
