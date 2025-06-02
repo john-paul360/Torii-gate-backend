@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {
   createProperty,
-  getLandlordProperties,
+  getLandlordsProperties,
   updatePropertyAvailability,
   getAllProperties,
   getAProperty,
@@ -14,7 +14,7 @@ router.get(
   "/landlord",
   isLoggedIn,
   requirePermissions("landlord"),
-  getLandlordProperties
+  getLandlordsProperties
 );
 router.patch(
   "/landlord/:propertyId",
